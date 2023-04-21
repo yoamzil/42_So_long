@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:23:57 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/21 01:52:44 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 02:34:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	**read_map(char *filepath)
 {
-	int		file_descriptor;
+	int		fd;
 	char	*line;
 	char	*accumulator;
 	char	*temp_holder;
 	char	**map_array;
 
-	file_descriptor = open(filepath, O_RDONLY);
-	if (file_descriptor == -1)
+	fd = open(filepath, O_RDONLY);
+	if (fd == -1)
 		return (NULL);
 	accumulator = ft_strdup("");
 	while (1)
 	{
-		line = get_next_line(file_descriptor);
+		line = get_next_line(fd);
 		if (!line)
 			break ;
 		temp_holder = accumulator;
@@ -36,6 +36,6 @@ char	**read_map(char *filepath)
 	}
 	map_array = ft_split(accumulator, '\n');
 	free(accumulator);
-	close(file_descriptor);
+	close(fd);
 	return (map_array);
 }
