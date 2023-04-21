@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:24:06 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/21 01:25:53 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 01:53:08 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include <stdio.h>
-# include <mlx.h>
-
+// # include <mlx.h>
+# include <fcntl.h>
 
 #endif
