@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:23:57 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/21 02:34:52 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 02:48:22 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,33 @@ char	**read_map(char *filepath)
 	free(accumulator);
 	close(fd);
 	return (map_array);
+}
+
+int	main(int argc, char **argv)
+{
+	t_map	map;
+
+	if (argc == 2)
+	{
+		map.array = read_map(argv[1]);
+		// if (is_valid_map(&map) && is_valid_arg(argv[1]))
+		// {
+		// 	init_game(&map);
+		// 	start_gameplay(&map);
+		// 	mlx_loop(map.mlx);
+		// }
+		// else
+		// {
+		// 	if (map.array)
+		// 		free_map(map.array);
+		// 	printf("Invalid Map");
+		// 	exit(1);
+		// }
+	}
+	else
+	{
+		printf("Invalid Syntax");
+		exit(1);
+	}
+	return (0);
 }
