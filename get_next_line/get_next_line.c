@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:05:20 by yoamzil           #+#    #+#             */
-/*   Updated: 2022/11/23 18:12:20 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:51:25 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*join(char *s, int fd)
 		else if (r == 0)
 			break ;
 		buffer[r] = '\0';
-		s = ft_strjoin(s, buffer);
+		s = my_strjoin(s, buffer);
 		if (ft_break(buffer) == 1)
 			break ;
 	}
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	result = new_line(line);
 	t = line;
-	line = ft_strchr(t, '\n');
+	line = my_strchr(t, '\n');
 	free(t);
 	return (result);
 }

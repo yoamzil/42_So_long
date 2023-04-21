@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:24:06 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/21 02:49:57 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:49:27 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
-// # include <mlx.h>
+# include <mlx.h>
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
+
 typedef struct	s_map
 {
     int     width;

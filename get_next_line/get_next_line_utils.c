@@ -6,13 +6,13 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:28:56 by yoamzil           #+#    #+#             */
-/*   Updated: 2022/11/23 18:24:52 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:50:27 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	my_strlen(char *str)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*my_strjoin(char *s1, char *s2)
 {
 	char	*pointer;
 	int		i;
@@ -32,7 +32,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	pointer = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	pointer = malloc(my_strlen(s1) + my_strlen(s2) + 1);
 	if (pointer == 0)
 		return (0);
 	while (s1 && s1[i])
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (pointer);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*my_strchr(char *s, int c)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ char	*ft_strchr(char *s, int c)
 		i++;
 	if (!s[i] || (s[i] == c && s[i + 1] == '\0'))
 		return (0);
-	str = malloc (ft_strlen(s) - i);
+	str = malloc (my_strlen(s) - i);
 	if (!str)
 		return (0);
 	i += 1;

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:12:44 by yoamzil           #+#    #+#             */
-/*   Updated: 2022/11/23 17:12:55 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:50:41 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(char *str);
-char	*ft_strchr(char *s, int c);
+char	*my_strjoin(char *s1, char *s2);
+size_t	my_strlen(char *str);
+char	*my_strchr(char *s, int c);
 
 #endif
