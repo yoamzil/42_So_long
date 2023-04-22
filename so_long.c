@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:23:57 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/21 22:34:43 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/04/22 14:38:11 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,52 +40,53 @@ char	**read_map(char *filepath)
 	return (map_array);
 }
 
-int is_rectangular(char **map)
+int	is_rectangular(char **map)
 {
-    size_t	row = 0;
-    size_t	width = 0;
+	int	i;
 
-    if (map == NULL)
-        return (0);
-
-    while (map[row] != NULL)
-    {
-        if (width == 0)
-            width = ft_strlen(map[row]);
-        else if (width != ft_strlen(map[row]))
-            return (0);
-        row++;
-    }
-
-    return (1);
+	i = 1;
+	if (!map)
+		return (0);
+	while (map[i] != NULL)
+	{
+        // printf("dkhel l while\n");
+		if (ft_strlen(map[i]) != ft_strlen(map[0]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int is_surrounded_by_walls(char **map)
+int	is_surrounded_by_walls(char **map)
 {
-    int i, j;
-    // Check top and bottom walls
-    i = 0;
-    while (map[i])
-    {
-        if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
-            return (0);
-        i++;
-    }
-    // Check left and right walls
-    i = 1;
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j])
-        {
-            if ((j == 0 || j == (int)ft_strlen(map[i]) - 1) && map[i][j] != '1')
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	int i;
+	int j;
+	int width;
+	int height;
+
+	height = 0;
+	while (map[height])
+		height++;
+	width = ft_strlen(map[0]);
+	if (width < 2 || height < 2)
+		return (0);
+	i = 0;
+	while (i < width)
+	{
+		if (map[0][i] != '1' || map[height - 1][i] != '1')
+			return (0);
+		i++;
+	}
+	j = 1;
+	while (j < height - 1)
+	{
+		if (map[j][0] != '1' || map[j][width - 1] != '1')
+			return (0);
+		j++;
+	}
+	return (1);
 }
+
 
 int has_valid_pec(t_game *game)
 {
@@ -113,7 +114,7 @@ int has_valid_pec(t_game *game)
     }
     if (game->num_player != 1 || game->num_exit == 0 || game->num_collect == 0)
         return (0);
-
+    // printf("lmushkil mashy f valid_pec\n");
     return (1);
 }
 
@@ -133,13 +134,15 @@ int is_valid_map_chars(char **map)
         }
         i++;
     }
+    // printf("lmushkil mashy f valid_map_char\n");
     return 1;
 }
 
 int is_valid_map(t_game *game)
 {
-    if (is_rectangular(game->map) && is_surrounded_by_walls(game->map)
-        && has_valid_pec(game) && is_valid_map_chars(game->map))
+    // printf("dkhel l valid map\n");
+    // exit(0);
+    if (is_rectangular(game->map) && is_surrounded_by_walls(game->map) && has_valid_pec(game) && is_valid_map_chars(game->map))
         return (1);
     return (0);
 }
@@ -167,8 +170,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		game.array = read_map(argv[1]);
-		printf("wselt hna\n");
+		game.map = read_map(argv[1]);
 		if (is_valid_map(&game) && is_valid_arg(argv[1]))
 		{
 			printf("Valid Map");
@@ -178,15 +180,15 @@ int	main(int argc, char **argv)
 		}
 		else
 		{
-			if (game.array)
+			if (game.map)
 				// free_map(game.array);
-				printf("Invalid Map");
+				printf("Invalid Map\n");
 			exit(1);
 		}
 	}
 	else
 	{
-		printf("Invalid Syntax");
+		printf("Invalid Syntax\n");
 		exit(1);
 	}
 	return (0);
