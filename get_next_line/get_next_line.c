@@ -20,7 +20,7 @@ char	*new_line(char *s)
 	if (!*s)
 		return (NULL);
 	i = 0;
-	while (s[i] != '\0' & s[i] != '\n')
+	while (s[i] != '\0' && s[i] != '\n')
 		i++;
 	str = malloc(i + 2);
 	if (!str)
