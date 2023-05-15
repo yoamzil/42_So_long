@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/26 20:00:45 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:33:10 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int     is_valid_map(t_game *map);
 int     is_rectangular(char **map);
 int     is_valid_arg(char *arg);
 int     is_surrounded_by_walls(char **map);
+int		has_double_newline(char *map);
 
 #endif

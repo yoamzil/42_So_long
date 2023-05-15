@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/04/26 20:00:42 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:33:19 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,26 @@ char	**read_map(char *filepath)
 		free(line);
 		free(temp_holder);
 	}
+	has_double_newline(accumulator);
 	map_array = ft_split(accumulator, '\n');
 	free(accumulator);
 	close(fd);
 	return (map_array);
 }
 
+int	has_double_newline(char *map)
+{
+    while (*map)
+    {
+        if (*map == '\n' && *(map + 1) == '\n')
+		{
+			printf("Error... Invalid Map\n");
+			exit(1);
+		}
+        map++;
+    }
+    return 0;
+}
 int	is_rectangular(char **map)
 {
 	int	i;
@@ -182,7 +196,7 @@ int	main(int argc, char **argv)
 		{
 			if (game.map)
 				// free_map(game.array);
-				printf("Invalid Map\n");
+				printf("Error... Invalid Map\n");
 			exit(1);
 		}
 	}
