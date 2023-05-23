@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:10 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/23 23:14:05 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,23 @@ typedef struct s_game
 	int		num_player;
 	int		num_collect;
 	int		num_exit;
-	// void	*mlx;
-	// void	*win;
-	// void	*img_backg;
-	// void	*img_wall;
-	// void	*img_player;
-	// void	*img_collect;
-	// void	*img_exit;
+	void	*mlx;
+	void	*window;
+	void	*space_img;
+	void	*wall_img;
+	void	*player_img;
+	void	*collect_img;
+	void	*exit_img;
 	// void	*img_losing;
-	// int		map_w;
-	// int		map_h;
-	// int		img_w;
-	// int		img_h;
+	int		map_width;
+	int		map_height;
+	int		img_width;
+	int		img_height;
 	// char	*intra_str;
-	// int		x_player;
-	// int		y_player;
-	// int		moves;
-	// int		endgame;
+	int		x_player;
+	int		y_player;
+	int		moves;
+	int		endgame;
 }	t_game;
 
 char	**read_map(char *filepath);

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:19 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/23 23:17:07 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,82 @@ int	is_valid_arg(char *arg)
 	}
 	return (0);
 }
+static void	size_window_init(t_game *game)
+{
+	int	i;
 
+	i = 0;
+	game->map_width = ft_strlen(game->map[0]) * 64;
+	while (game->map[i] != NULL)
+		i++;
+	game->map_height = i * 64;
+}
+
+static void	initialize_image(t_game *game)
+{
+	game->collect_img = mlx_xpm_file_to_image
+		(game->mlx, "imgs/collect.xpm", &game->img_width, &game->img_height);
+	game->exit_img = mlx_xpm_file_to_image
+		(game->mlx, "imgs/exit.xpm", &game->img_width, &game->img_height);
+	game->player_img = mlx_xpm_file_to_image
+		(game->mlx, "imgs/player.xpm", &game->img_width, &game->img_height);
+	game->space_img = mlx_xpm_file_to_image
+		(game->mlx, "imgs/space.xpm", &game->img_width, &game->img_height);
+	game->wall_img = mlx_xpm_file_to_image
+		(game->mlx, "imgs/wall.xpm", &game->img_width, &game->img_height);
+}
+
+void	img_drawing(t_game *game, void *image, int x, int y)
+{
+	mlx_put_image_to_window
+		(game->mlx, game->window, image, x * 64, y * 64);
+}
+
+static void	player_drawing(t_game *game, void *image, int x, int y)
+{
+	game->x_player = x;
+	game->y_player = y;
+	img_drawing(game, image, x, y);
+}
+
+int	map_drawing(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == '1')
+				img_drawing(game, game->wall_img, x, y);
+			else if (game->map[y][x] == '0')
+				img_drawing(game, game->space_img, x, y);
+			else if (game->map[y][x] == 'C')
+				img_drawing(game, game->collect_img, x, y);
+			else if (game->map[y][x] == 'E')
+				img_drawing(game, game->exit_img, x, y);
+			else if (game->map[y][x] == 'P')
+				player_drawing(game, game->player_img, x, y);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+void	initialize_game(t_game *game)
+{
+	game->mlx = mlx_init();
+	size_window_init(game);
+	game->window = mlx_new_window(game->mlx, game->map_width, game->map_height, "so_long");
+	game->moves = 0;
+	game->endgame = 0;
+	initialize_image(game);
+	map_drawing(game);
+}
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -188,7 +263,7 @@ int	main(int argc, char **argv)
 		if (is_valid_map(&game) && is_valid_arg(argv[1]))
 		{
 			printf("Valid Map");
-		// 	init_game(&map);
+			initialize_game(&game);
 		// 	start_gameplay(&map);
 		// 	mlx_loop(map.mlx);
 		}
