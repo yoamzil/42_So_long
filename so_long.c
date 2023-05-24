@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/24 23:48:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/24 23:50:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -456,7 +456,7 @@ int	main(int argc, char **argv)
 		else
 		{
 			if (game.map)
-				// free_map(game.array);
+				free_map(game.map);
 				printf("Error... Invalid Map\n");
 			exit(1);
 		}
