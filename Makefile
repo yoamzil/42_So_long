@@ -6,7 +6,7 @@
 #    By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 20:00:33 by yoamzil           #+#    #+#              #
-#    Updated: 2023/05/23 23:25:19 by yoamzil          ###   ########.fr        #
+#    Updated: 2023/05/24 18:39:28 by yoamzil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	so_long
 
 CC			=   cc 
 CFLAGS		=   -Wall -Wextra -Werror
-MLX         = -lmlx -framework OpenGL -framework AppKit
+MLX         =   -lmlx -framework OpenGL -framework AppKit
 
 SRC			=   get_next_line/get_next_line.c \
                           get_next_line/get_next_line_utils.c \

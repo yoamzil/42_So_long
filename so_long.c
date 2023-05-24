@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/23 23:17:07 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/24 23:48:00 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,13 +182,13 @@ static void	size_window_init(t_game *game)
 	int	i;
 
 	i = 0;
-	game->map_width = ft_strlen(game->map[0]) * 64;
+	game->map_width = ft_strlen(game->map[0]) * 32;
 	while (game->map[i] != NULL)
 		i++;
-	game->map_height = i * 64;
+	game->map_height = i * 32;
 }
 
-static void	initialize_image(t_game *game)
+void	initialize_image(t_game *game)
 {
 	game->collect_img = mlx_xpm_file_to_image
 		(game->mlx, "imgs/collect.xpm", &game->img_width, &game->img_height);
@@ -205,10 +205,10 @@ static void	initialize_image(t_game *game)
 void	img_drawing(t_game *game, void *image, int x, int y)
 {
 	mlx_put_image_to_window
-		(game->mlx, game->window, image, x * 64, y * 64);
+		(game->mlx, game->window, image, x * 32, y * 32);
 }
 
-static void	player_drawing(t_game *game, void *image, int x, int y)
+void	player_drawing(t_game *game, void *image, int x, int y)
 {
 	game->x_player = x;
 	game->y_player = y;
@@ -226,6 +226,7 @@ int	map_drawing(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
+			img_drawing(game, game->space_img, x, y);
 			if (game->map[y][x] == '1')
 				img_drawing(game, game->wall_img, x, y);
 			else if (game->map[y][x] == '0')
@@ -253,6 +254,192 @@ void	initialize_game(t_game *game)
 	initialize_image(game);
 	map_drawing(game);
 }
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+int	exit_game(t_game *game)
+{
+	free_map(game->map);
+	mlx_destroy_image(game->mlx, game->space_img);
+	mlx_destroy_image(game->mlx, game->wall_img);
+	mlx_destroy_image(game->mlx, game->player_img);
+	mlx_destroy_image(game->mlx, game->collect_img);
+	mlx_destroy_image(game->mlx, game->exit_img);
+	mlx_destroy_window(game->mlx, game->window);
+	free(game->mlx);
+	game->mlx = NULL;
+	exit(0);
+}
+
+void	player_up(t_game *game)
+{
+    char current_tile = game->map[game->y_player][game->x_player];
+
+    if (current_tile == 'E' && game->num_collect == 0)
+    {
+        mlx_clear_window(game->mlx, game->window);
+        game->map[game->y_player + 1][game->x_player] = '0';
+        game->moves++;
+        game->endgame = 1;
+    }
+    else if (current_tile == '1' || current_tile == 'E')
+    {
+        game->y_player += 1;
+    }
+    else
+    {
+        mlx_clear_window(game->mlx, game->window);
+        if (current_tile == 'C')
+            game->num_collect -= 1;
+        game->map[game->y_player][game->x_player] = 'P';
+        game->map[game->y_player + 1][game->x_player] = '0';
+        game->moves++;
+		printf("Moves: %d\n", game->moves);
+    }
+    map_drawing(game);
+}
+
+void	player_down(t_game *game)
+{
+    char current_tile = game->map[game->y_player][game->x_player];
+
+    if (current_tile == 'E' && game->num_collect == 0)
+    {
+        mlx_clear_window(game->mlx, game->window);
+        game->map[game->y_player - 1][game->x_player] = '0';
+        game->moves++;
+        game->endgame = 1;
+    }
+    else if (current_tile == '1' || current_tile == 'E')
+    {
+        game->y_player -= 1;
+    }
+    else
+    {
+        mlx_clear_window(game->mlx, game->window);
+        if (current_tile == 'C')
+            game->num_collect -= 1;
+        game->map[game->y_player][game->x_player] = 'P';
+        game->map[game->y_player - 1][game->x_player] = '0';
+        game->moves++;
+		printf("Moves: %d\n", game->moves);
+    }
+    map_drawing(game);
+}
+
+void	player_right(t_game *game)
+{
+    char current_tile = game->map[game->y_player][game->x_player];
+
+    if (current_tile == 'E' && game->num_collect == 0)
+    {
+        mlx_clear_window(game->mlx, game->window);
+        game->map[game->y_player][game->x_player - 1] = '0';
+        game->moves++;
+        game->endgame = 1;
+    }
+    else if (current_tile == '1' || current_tile == 'E')
+    {
+        game->x_player -= 1;
+    }
+    else
+    {
+        mlx_clear_window(game->mlx, game->window);
+        if (current_tile == 'C')
+            game->num_collect -= 1;
+        game->map[game->y_player][game->x_player] = 'P';
+        game->map[game->y_player][game->x_player - 1] = '0';
+        game->moves++;
+		printf("Moves: %d\n", game->moves);
+    }
+
+    map_drawing(game);
+}
+
+
+void	player_left(t_game *game)
+{
+    char current_tile = game->map[game->y_player][game->x_player];
+
+    if (current_tile == 'E' && game->num_collect == 0)
+    {
+        mlx_clear_window(game->mlx, game->window);
+        game->map[game->y_player][game->x_player + 1] = '0';
+        game->moves++;
+        game->endgame = 1;
+    }
+    else if (current_tile == '1' || current_tile == 'E')
+    {
+        game->x_player += 1;
+    }
+    else
+    {
+        mlx_clear_window(game->mlx, game->window);
+        if (current_tile == 'C')
+            game->num_collect -= 1;
+        game->map[game->y_player][game->x_player] = 'P';
+        game->map[game->y_player][game->x_player + 1] = '0';
+        game->moves++;
+		printf("Moves: %d\n", game->moves);
+    }
+    map_drawing(game);
+}
+
+void	events(int key, t_game *game)
+{
+	if (key == 13)
+	{
+		game->y_player -= 1;
+		player_up(game);
+	}
+	else if (key == 1)
+	{
+		game->y_player += 1;
+		player_down(game);
+	}
+	else if (key == 2)
+	{
+		game->x_player += 1;
+		player_right(game);
+	}
+	else if (key == 0)
+	{
+		game->x_player -= 1;
+		player_left(game);
+	}
+}
+
+int	button_click(int key, t_game *game)
+{
+	if (key == 53)
+		exit_game(game);
+	else if (!game->endgame)
+	{
+		events(key, game);
+		if (game->endgame == 1)
+		{
+			exit_game(game);
+		}
+	}
+	return (0);
+}
+
+void	start_gameplay(t_game *game)
+{
+	mlx_hook(game->window, 2, 0, button_click, game);
+	mlx_hook(game->window, 17, 0, exit_game, game);
+}
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -262,10 +449,9 @@ int	main(int argc, char **argv)
 		game.map = read_map(argv[1]);
 		if (is_valid_map(&game) && is_valid_arg(argv[1]))
 		{
-			printf("Valid Map");
 			initialize_game(&game);
-		// 	start_gameplay(&map);
-		// 	mlx_loop(map.mlx);
+			start_gameplay(&game);
+			mlx_loop(game.mlx);
 		}
 		else
 		{
