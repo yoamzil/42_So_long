@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/24 23:50:52 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 13:53:10 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	has_double_newline(char *map)
     {
         if (*map == '\n' && *(map + 1) == '\n')
 		{
-			printf("Error... Invalid Map\n");
+			ft_printf("Error... Invalid Map\n");
 			exit(1);
 		}
         map++;
@@ -128,7 +128,6 @@ int has_valid_pec(t_game *game)
     }
     if (game->num_player != 1 || game->num_exit == 0 || game->num_collect == 0)
         return (0);
-    // printf("lmushkil mashy f valid_pec\n");
     return (1);
 }
 
@@ -148,14 +147,11 @@ int is_valid_map_chars(char **map)
         }
         i++;
     }
-    // printf("lmushkil mashy f valid_map_char\n");
     return 1;
 }
 
 int is_valid_map(t_game *game)
 {
-    // printf("dkhel l valid map\n");
-    // exit(0);
     if (is_rectangular(game->map) && is_surrounded_by_walls(game->map) && has_valid_pec(game) && is_valid_map_chars(game->map))
         return (1);
     return (0);
@@ -305,7 +301,7 @@ void	player_up(t_game *game)
         game->map[game->y_player][game->x_player] = 'P';
         game->map[game->y_player + 1][game->x_player] = '0';
         game->moves++;
-		printf("Moves: %d\n", game->moves);
+		ft_printf("Moves: %d\n", game->moves);
     }
     map_drawing(game);
 }
@@ -333,7 +329,7 @@ void	player_down(t_game *game)
         game->map[game->y_player][game->x_player] = 'P';
         game->map[game->y_player - 1][game->x_player] = '0';
         game->moves++;
-		printf("Moves: %d\n", game->moves);
+		ft_printf("Moves: %d\n", game->moves);
     }
     map_drawing(game);
 }
@@ -361,7 +357,7 @@ void	player_right(t_game *game)
         game->map[game->y_player][game->x_player] = 'P';
         game->map[game->y_player][game->x_player - 1] = '0';
         game->moves++;
-		printf("Moves: %d\n", game->moves);
+		ft_printf("Moves: %d\n", game->moves);
     }
 
     map_drawing(game);
@@ -391,7 +387,7 @@ void	player_left(t_game *game)
         game->map[game->y_player][game->x_player] = 'P';
         game->map[game->y_player][game->x_player + 1] = '0';
         game->moves++;
-		printf("Moves: %d\n", game->moves);
+		ft_printf("Moves: %d\n", game->moves);
     }
     map_drawing(game);
 }
@@ -457,13 +453,13 @@ int	main(int argc, char **argv)
 		{
 			if (game.map)
 				free_map(game.map);
-				printf("Error... Invalid Map\n");
+				ft_printf("Error... Invalid Map\n");
 			exit(1);
 		}
 	}
 	else
 	{
-		printf("Invalid Syntax\n");
+		ft_printf("Invalid Syntax\n");
 		exit(1);
 	}
 	return (0);

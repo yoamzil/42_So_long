@@ -6,7 +6,7 @@
 #    By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 20:00:33 by yoamzil           #+#    #+#              #
-#    Updated: 2023/05/24 18:39:28 by yoamzil          ###   ########.fr        #
+#    Updated: 2023/05/25 13:50:42 by yoamzil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,14 @@ SRC			=   get_next_line/get_next_line.c \
                           libft/ft_substr.c \
                           libft/ft_tolower.c \
                           libft/ft_toupper.c \
-						  
+						  ft_printf/ft_convert.c \
+                          ft_printf/ft_hexa.c \
+                          ft_printf/ft_printf.c \
+                          ft_printf/ft_putchar.c \
+                          ft_printf/ft_putnbr_uns.c \
+                          ft_printf/ft_putnbr.c \
+                          ft_printf/ft_putstr.c \
+                          
 PSP			= so_long.c
 
 OBJ			= $(SRC:.c=.o)
