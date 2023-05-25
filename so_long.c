@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 13:53:10 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:54:03 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	has_double_newline(char *map)
     {
         if (*map == '\n' && *(map + 1) == '\n')
 		{
-			ft_printf("Error... Invalid Map\n");
+			ft_printf("Error\nInvalid Map\n");
 			exit(1);
 		}
         map++;
@@ -173,7 +173,7 @@ int	is_valid_arg(char *arg)
 	}
 	return (0);
 }
-static void	size_window_init(t_game *game)
+void	size_window_init(t_game *game)
 {
 	int	i;
 
@@ -280,8 +280,9 @@ int	exit_game(t_game *game)
 
 void	player_up(t_game *game)
 {
-    char current_tile = game->map[game->y_player][game->x_player];
-
+    char	current_tile;
+	
+	current_tile = game->map[game->y_player][game->x_player];
     if (current_tile == 'E' && game->num_collect == 0)
     {
         mlx_clear_window(game->mlx, game->window);
@@ -308,8 +309,9 @@ void	player_up(t_game *game)
 
 void	player_down(t_game *game)
 {
-    char current_tile = game->map[game->y_player][game->x_player];
-
+    char	current_tile;
+	
+	current_tile = game->map[game->y_player][game->x_player];
     if (current_tile == 'E' && game->num_collect == 0)
     {
         mlx_clear_window(game->mlx, game->window);
@@ -336,8 +338,9 @@ void	player_down(t_game *game)
 
 void	player_right(t_game *game)
 {
-    char current_tile = game->map[game->y_player][game->x_player];
-
+    char	current_tile;
+	
+	current_tile = game->map[game->y_player][game->x_player];
     if (current_tile == 'E' && game->num_collect == 0)
     {
         mlx_clear_window(game->mlx, game->window);
@@ -359,15 +362,15 @@ void	player_right(t_game *game)
         game->moves++;
 		ft_printf("Moves: %d\n", game->moves);
     }
-
     map_drawing(game);
 }
 
 
 void	player_left(t_game *game)
 {
-    char current_tile = game->map[game->y_player][game->x_player];
+    char	current_tile;
 
+	current_tile = game->map[game->y_player][game->x_player];
     if (current_tile == 'E' && game->num_collect == 0)
     {
         mlx_clear_window(game->mlx, game->window);
@@ -436,6 +439,7 @@ void	start_gameplay(t_game *game)
 	mlx_hook(game->window, 2, 0, button_click, game);
 	mlx_hook(game->window, 17, 0, exit_game, game);
 }
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -453,13 +457,13 @@ int	main(int argc, char **argv)
 		{
 			if (game.map)
 				free_map(game.map);
-				ft_printf("Error... Invalid Map\n");
+				ft_printf("Error\nInvalid Map\n");
 			exit(1);
 		}
 	}
 	else
 	{
-		ft_printf("Invalid Syntax\n");
+		ft_printf("Error\nInvalid Syntax\n");
 		exit(1);
 	}
 	return (0);
