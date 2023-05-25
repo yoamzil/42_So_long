@@ -6,7 +6,7 @@
 #    By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 20:00:33 by yoamzil           #+#    #+#              #
-#    Updated: 2023/05/25 17:42:26 by yoamzil          ###   ########.fr        #
+#    Updated: 2023/05/25 22:04:07 by yoamzil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC			=   get_next_line/get_next_line.c \
                           ft_printf/ft_putstr.c \
                           valid.c \
                           valid1.c \
+                          initializing.c \
                           
 PSP			= so_long.c
 

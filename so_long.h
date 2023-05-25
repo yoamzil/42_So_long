@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 20:44:36 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:09:50 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ char	**read_map(char *filepath);
 int		is_valid_map(t_game *map);
 int		is_valid_arg(char *arg);
 int		has_double_newline(char *map);
+void	size_window_init(t_game *game);
+void	initialize_image(t_game *game);
+int		map_drawing(t_game *game);
+void	img_drawing(t_game *game, void *image, int x, int y);
+void	player_drawing(t_game *game, void *image, int x, int y);
 
 #endif
