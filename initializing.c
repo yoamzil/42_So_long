@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:02:51 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 22:07:16 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:30:06 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	player_drawing(t_game *game, void *image, int x, int y)
 	game->y_player = y;
 	img_drawing(game, image, x, y);
 }
-

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 22:09:50 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:25:15 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,14 @@ void	initialize_image(t_game *game);
 int		map_drawing(t_game *game);
 void	img_drawing(t_game *game, void *image, int x, int y);
 void	player_drawing(t_game *game, void *image, int x, int y);
+void	free_map(char **map);
+void	start_gameplay(t_game *game);
+int		button_click(int key, t_game *game);
+int		exit_game(t_game *game);
+void	events(int key, t_game *game);
+void	player_up(t_game *game);
+void	player_down(t_game *game);
+void	player_right(t_game *game);
+void	player_left(t_game *game);
 
 #endif
