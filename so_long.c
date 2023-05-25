@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 15:54:03 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:52:35 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,139 +39,6 @@ char	**read_map(char *filepath)
 	free(accumulator);
 	close(fd);
 	return (map_array);
-}
-
-int	has_double_newline(char *map)
-{
-    while (*map)
-    {
-        if (*map == '\n' && *(map + 1) == '\n')
-		{
-			ft_printf("Error\nInvalid Map\n");
-			exit(1);
-		}
-        map++;
-    }
-    return 0;
-}
-int	is_rectangular(char **map)
-{
-	int	i;
-
-	i = 1;
-	if (!map)
-		return (0);
-	while (map[i] != NULL)
-	{
-        // printf("dkhel l while\n");
-		if (ft_strlen(map[i]) != ft_strlen(map[0]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_surrounded_by_walls(char **map)
-{
-	int i;
-	int j;
-	int width;
-	int height;
-
-	height = 0;
-	while (map[height])
-		height++;
-	width = ft_strlen(map[0]);
-	if (width < 2 || height < 2)
-		return (0);
-	i = 0;
-	while (i < width)
-	{
-		if (map[0][i] != '1' || map[height - 1][i] != '1')
-			return (0);
-		i++;
-	}
-	j = 1;
-	while (j < height - 1)
-	{
-		if (map[j][0] != '1' || map[j][width - 1] != '1')
-			return (0);
-		j++;
-	}
-	return (1);
-}
-
-
-int has_valid_pec(t_game *game)
-{
-    int i = 0;
-    int j = 0;
-
-    game->num_collect = 0;
-    game->num_player = 0;
-    game->num_exit = 0;
-
-    while (game->map[i])
-    {
-        j = 0;
-        while (game->map[i][j])
-        {
-            if (game->map[i][j] == 'P')
-                game->num_player++;
-            else if (game->map[i][j] == 'E')
-                game->num_exit++;
-            else if (game->map[i][j] == 'C')
-                game->num_collect++;
-            j++;
-        }
-        i++;
-    }
-    if (game->num_player != 1 || game->num_exit == 0 || game->num_collect == 0)
-        return (0);
-    return (1);
-}
-
-int is_valid_map_chars(char **map)
-{
-    int i = 0;
-    int j;
-    while (map[i])
-	{
-        j = 0;
-        while (map[i][j]) {
-            char c = map[i][j];
-            if (c != 'P' && c != 'E' && c != 'C' && c != '0' && c != '1') {
-                return 0;
-            }
-            j++;
-        }
-        i++;
-    }
-    return 1;
-}
-
-int is_valid_map(t_game *game)
-{
-    if (is_rectangular(game->map) && is_surrounded_by_walls(game->map) && has_valid_pec(game) && is_valid_map_chars(game->map))
-        return (1);
-    return (0);
-}
-
-int	is_valid_arg(char *arg)
-{
-	int	len;
-
-	if (!arg)
-		return (0);
-
-	len = 0;
-	while (arg[len] != '\0')
-		len++;
-	if (arg[len - 1] == 'r' && arg[len - 2] == 'e' && arg[len - 3] == 'b' && arg[len - 4] == '.')
-	{
-		return (1);
-	}
-	return (0);
 }
 void	size_window_init(t_game *game)
 {
