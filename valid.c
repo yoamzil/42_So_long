@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:13:27 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 21:02:38 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 21:58:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ int	is_surrounded_by_walls(char **map)
 	width = ft_strlen(map[0]);
 	if (width < 2 || height < 2)
 		return (0);
-	i = 0;
-	while (i < width)
+	i = -1;
+	while (++i < width)
 	{
 		if (map[0][i] != '1' || map[height - 1][i] != '1')
 			return (0);
-		i++;
 	}
 	j = 1;
 	while (j < height - 1)
@@ -63,12 +62,12 @@ int	has_valid_pec(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	game->num_collect = 0;
 	game->num_player = 0;
 	game->num_exit = 0;
-	while (game->map[i])
+	while (game->map[++i])
 	{
 		j = 0;
 		while (game->map[i][j])
@@ -81,7 +80,6 @@ int	has_valid_pec(t_game *game)
 				game->num_collect++;
 			j++;
 		}
-		i++;
 	}
 	if (game->num_player != 1 || game->num_exit != 1 || game->num_collect == 0)
 		return (0);
