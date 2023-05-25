@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:13:27 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 17:31:45 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/25 21:02:38 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	has_valid_pec(t_game *game)
 		}
 		i++;
 	}
-	if (game->num_player != 1 || game->num_exit == 0 || game->num_collect == 0)
+	if (game->num_player != 1 || game->num_exit != 1 || game->num_collect == 0)
 		return (0);
 	return (1);
 }
