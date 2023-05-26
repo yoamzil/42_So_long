@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 22:25:15 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:44:33 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_game
 	void	*exit_img;
 	void	*space_img;
 	void	*wall_img;
+	int		width;
+	int		height;
 	int		map_width;
 	int		map_height;
 	int		img_width;

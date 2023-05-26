@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:02:51 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 22:30:06 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:46:04 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	size_window_init(t_game *game)
 	int	i;
 
 	i = 0;
+	game->width = ft_strlen(game->map[0]);
 	game->map_width = ft_strlen(game->map[0]) * 32;
 	while (game->map[i] != NULL)
 		i++;
 	game->map_height = i * 32;
+	game->height = i;
 }
 
 void	initialize_image(t_game *game)
