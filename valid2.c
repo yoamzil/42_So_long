@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:58:24 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 17:10:39 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 18:39:40 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	final_check(char **map_copy, int width, int height)
 			if (map_copy[i][j] == 'C')
 			{
 				ft_printf("Error\nInvalid Path\n");
-				exit (0);
+				exit(0);
 			}
 			j++;
 		}
@@ -40,6 +40,14 @@ void	replace(char **map_copy, int i, int j, int *replaced)
 	*replaced = 1;
 }
 
+int	ft_condition(int i, int j, char **map_copy)
+{
+	if ((map_copy[i][j] == 'C' || map_copy[i][j] == '0'))
+		return (1);
+	else
+		return (0);
+}
+
 char	**directions(char **map_copy, t_game game, int *replaced)
 {
 	int	i;
@@ -48,21 +56,20 @@ char	**directions(char **map_copy, t_game game, int *replaced)
 	i = -1;
 	while (++i < game.height)
 	{
-		j = 0;
-		while (j <= game.width)
+		j = -1;
+		while (++j <= game.width)
 		{
 			if (map_copy[i][j] == 'P')
 			{
-				if (i > 0 && (map_copy[i - 1][j] == 'C' || map_copy[i - 1][j] == '0'))
-					replace(map_copy, i - 1, j, replaced);
-				if (i < game.height - 1 && (map_copy[i + 1][j] == 'C' || map_copy[i + 1][j] == '0'))
+				if (i > 0 && ft_condition(i - 1, j, map_copy))
+					replace(map_copy, i -1, j, replaced);
+				if (i > 0 && ft_condition(i + 1, j, map_copy))
 					replace(map_copy, i + 1, j, replaced);
-				if (j > 0 && (map_copy[i][j - 1] == 'C' || map_copy[i][j - 1] == '0'))
+				if (i > 0 && ft_condition(i, j - 1, map_copy))
 					replace(map_copy, i, j - 1, replaced);
-				if (j < game.width && (map_copy[i][j + 1] == 'C' || map_copy[i][j + 1] == '0'))
+				if (i > 0 && ft_condition(i, j + 1, map_copy))
 					replace(map_copy, i, j + 1, replaced);
 			}
-			j++;
 		}
 	}
 	return (map_copy);
@@ -89,11 +96,5 @@ void	valid_path(t_game game)
 		res = directions(map_copy, game, &replaced);
 	}
 	final_check(res, game.width, game.height);
-	i = 0;
-	while (i < game.height)
-	{
-		free(map_copy[i]);
-		i++;
-	}
-	free(map_copy);
+	freeing(game, map_copy);
 }

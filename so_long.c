@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 16:38:30 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 18:38:49 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ void	initialize_game(t_game *game)
 	game->endgame = 0;
 	initialize_image(game);
 	map_drawing(game);
+}
+
+void	freeing(t_game game, char **map_copy)
+{
+	int	i;
+
+	i = 0;
+	while (i < game.height)
+	{
+		free(map_copy[i]);
+		i++;
+	}
+	free(map_copy);
 }
 
 void	error_printing(void)
