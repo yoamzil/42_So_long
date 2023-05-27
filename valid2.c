@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:58:24 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 17:04:13 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 17:10:39 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ void	replace(char **map_copy, int i, int j, int *replaced)
 	*replaced = 1;
 }
 
-char	**directions(char **map_copy, int width, int height, int *replaced)
+char	**directions(char **map_copy, t_game game, int *replaced)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < height)
+	while (++i < game.height)
 	{
 		j = 0;
-		while (j <= width)
+		while (j <= game.width)
 		{
 			if (map_copy[i][j] == 'P')
 			{
 				if (i > 0 && (map_copy[i - 1][j] == 'C' || map_copy[i - 1][j] == '0'))
 					replace(map_copy, i - 1, j, replaced);
-				if (i < height - 1 && (map_copy[i + 1][j] == 'C' || map_copy[i + 1][j] == '0'))
+				if (i < game.height - 1 && (map_copy[i + 1][j] == 'C' || map_copy[i + 1][j] == '0'))
 					replace(map_copy, i + 1, j, replaced);
 				if (j > 0 && (map_copy[i][j - 1] == 'C' || map_copy[i][j - 1] == '0'))
 					replace(map_copy, i, j - 1, replaced);
-				if (j < width && (map_copy[i][j + 1] == 'C' || map_copy[i][j + 1] == '0'))
+				if (j < game.width && (map_copy[i][j + 1] == 'C' || map_copy[i][j + 1] == '0'))
 					replace(map_copy, i, j + 1, replaced);
 			}
 			j++;
@@ -86,7 +86,7 @@ void	valid_path(t_game game)
 	while (replaced)
 	{
 		replaced = 0;
-		res = directions(map_copy, game.width, game.height, &replaced);
+		res = directions(map_copy, game, &replaced);
 	}
 	final_check(res, game.width, game.height);
 	i = 0;
