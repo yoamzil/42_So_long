@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/26 18:49:50 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:38:30 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ void	initialize_game(t_game *game)
 	map_drawing(game);
 }
 
+void	error_printing(void)
+{
+	ft_printf("Error\nInvalid Syntax\n");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -63,6 +69,7 @@ int	main(int argc, char **argv)
 		if (is_valid_map(&game) && is_valid_arg(argv[1]))
 		{
 			initialize_game(&game);
+			valid_path(game);
 			start_gameplay(&game);
 			mlx_loop(game.mlx);
 		}
@@ -70,14 +77,12 @@ int	main(int argc, char **argv)
 		{
 			if (game.map)
 				free_map(game.map);
-			ft_printf("Error\nInvalid Map\n");
-			exit(1);
+			error_printing();
 		}
 	}
 	else
 	{
-		ft_printf("Error\nInvalid Syntax\n");
-		exit(1);
+		error_printing();
 	}
 	return (0);
 }
