@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 18:39:19 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 22:11:09 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	player_right(t_game *game);
 void	player_left(t_game *game);
 void	valid_path(t_game game);
 void	freeing(t_game game, char **map_copy);
+int		first_empty_line(char *map);
 
 #endif

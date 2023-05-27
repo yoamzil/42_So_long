@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 19:27:05 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 22:16:08 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**read_map(char *filepath)
 		free(temp_holder);
 		line = get_next_line(fd);
 	}
+	first_empty_line(accumulator);
 	has_double_newline(accumulator);
 	map_array = ft_split(accumulator, '\n');
 	free(accumulator);
@@ -67,7 +68,7 @@ void	freeing(t_game game, char **map_copy)
 
 void	error_printing(void)
 {
-	ft_printf("Error\nInvalid Syntax\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 

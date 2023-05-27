@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:34:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 17:55:49 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 22:17:53 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,26 @@ int	is_valid_arg(char *arg)
 	return (0);
 }
 
+int	first_empty_line(char *map)
+{
+	int	i;
+
+	i = 0;
+	if (map[i] == '\n')
+	{
+		ft_printf("Error\nEmpty Line Found");
+		exit(1);
+	}
+	return (0);
+}
+
 int	has_double_newline(char *map)
 {
 	while (*map)
 	{
 		if (*map == '\n' && *(map + 1) == '\n')
 		{
-			ft_printf("Error\nInvalid Map\n");
+			ft_printf("Error\nDouble New Line Found\n");
 			exit(1);
 		}
 		map++;
