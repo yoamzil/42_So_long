@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:23:57 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/25 22:35:18 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 22:03:02 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void	player_up(t_game *game)
 		mlx_clear_window(game->mlx, game->window);
 		game->map[game->y_player + 1][game->x_player] = '0';
 		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 		game->endgame = 1;
 	}
 	else if (current_tile == '1' || current_tile == 'E')
-	{
 		game->y_player += 1;
-	}
 	else
 	{
 		mlx_clear_window(game->mlx, game->window);
@@ -51,12 +50,11 @@ void	player_down(t_game *game)
 		mlx_clear_window(game->mlx, game->window);
 		game->map[game->y_player - 1][game->x_player] = '0';
 		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 		game->endgame = 1;
 	}
 	else if (current_tile == '1' || current_tile == 'E')
-	{
 		game->y_player -= 1;
-	}
 	else
 	{
 		mlx_clear_window(game->mlx, game->window);
@@ -80,12 +78,11 @@ void	player_right(t_game *game)
 		mlx_clear_window(game->mlx, game->window);
 		game->map[game->y_player][game->x_player - 1] = '0';
 		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 		game->endgame = 1;
 	}
 	else if (current_tile == '1' || current_tile == 'E')
-	{
 		game->x_player -= 1;
-	}
 	else
 	{
 		mlx_clear_window(game->mlx, game->window);
@@ -109,12 +106,11 @@ void	player_left(t_game *game)
 		mlx_clear_window(game->mlx, game->window);
 		game->map[game->y_player][game->x_player + 1] = '0';
 		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 		game->endgame = 1;
 	}
 	else if (current_tile == '1' || current_tile == 'E')
-	{
 		game->x_player += 1;
-	}
 	else
 	{
 		mlx_clear_window(game->mlx, game->window);
