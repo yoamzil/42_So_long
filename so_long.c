@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:00:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/05/27 19:15:23 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/05/27 19:27:05 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ char	**read_map(char *filepath)
 	char	*temp_holder;
 	char	**map_array;
 
-	fd = open(filepath, O_RDONLY);
-	if (fd <= 0)
-		return (NULL);
 	accumulator = ft_strdup("");
+	fd = open(filepath, O_RDONLY);
 	line = get_next_line(fd);
-	if (!line)
+	if (!line || fd == -1)
 		return (NULL);
 	while (line)
 	{
