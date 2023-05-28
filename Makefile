@@ -6,7 +6,7 @@
 #    By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 20:00:33 by yoamzil           #+#    #+#              #
-#    Updated: 2023/05/27 15:58:43 by yoamzil          ###   ########.fr        #
+#    Updated: 2023/05/28 15:20:53 by yoamzil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,4 +89,3 @@ fclean : clean
 	make -C libft fclean
 
 re : fclean all
-	make -C libft fclean re
